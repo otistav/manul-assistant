@@ -11,7 +11,7 @@ function getBigResolutionLink(link: string): string {
 }
 
 function formatMessage(potd: any): string {
-  return `*${potd.description}*\n`;
+  return `${potd.description}\n`;
 }
 
 export default async function run() {
