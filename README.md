@@ -10,7 +10,8 @@ manul *name of the command*
 2. Telegram integration for useful stuff (for example, reminders)
 # TODO
 
-1. Create telegram script which sends wiki potd every morning
+1. ~~Create telegram script which sends wiki potd every morning~~
 2. Create proper project structure
 3. Start test coverage.
 4. Write cron scripts in separate folder
+5. **URGENT** Make cli work with typescript
