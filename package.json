@@ -1,15 +1,17 @@
 {
-  "name": "manul-bot",
-  "version": "0.0.1",
+  "name": "manul",
+  "version": "0.0.3",
   "description": "My personal best assistant ever!",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node-dev ./index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext .ts ./"
+    "lint": "eslint --ext .ts ./",
+    "build": "tsc",
+    "install": "tsc && npm i -g"
   },
   "bin": {
-    "manul": "cli/index.ts"
+    "manul": "build/cli/index.js"
   },
   "keywords": [],
   "author": "",
