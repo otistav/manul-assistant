@@ -11,7 +11,7 @@ manul *name of the command*
 # TODO
 
 1. ~~Create telegram script which sends wiki potd every morning~~
-2. Create proper project structure
+2. Create proper project structure. Here is the most important part. Now is good for prototyping, but need to think through on architecture
 3. Start test coverage.
 4. Write cron scripts in separate folder
-5. **URGENT** Make cli work with typescript
+5. ~~Make cli work with typescript~~
