@@ -1,5 +1,5 @@
 # Personal assistant (Manul) for my needs.
-![this is cool Manul](./assets/manul.jpeg)
+![this is cool Manul](./assets/manul-logo-with-white-stroke.png)
 Originally, I thought to make it in go, but since I need it asap, I decided to make it in node.
 
 # What it does
