@@ -15,3 +15,4 @@ manul *name of the command*
 3. Start test coverage.
 4. Write cron scripts in separate folder
 5. ~~Make cli work with typescript~~
+6. Write script for tracking pressure in google sheets TODO: Maybe, get rid of google sheets and use local instead. Their api is horrible. Just store the table on serverside

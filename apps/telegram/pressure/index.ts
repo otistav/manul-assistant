@@ -1,7 +1,7 @@
 import bot from '../../../entities/telegram';
 
-bot.on('message', (ctx) => {
-  ctx.reply('how can I help you?');
+bot.hears(/давление:*/, (ctx) => {
+  ctx.reply('ааа, давление меряешь, мерзавец? Молодец!');
 });
 
 bot.launch();
