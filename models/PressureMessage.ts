@@ -1,24 +1,25 @@
-import api from '../api/sheets';
+import api from '../db/db';
 import { Pressure } from '../types';
-
-function getDate() {
-  return `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`;
-}
 
 class PressureMessage {
   message: string;
-  high: string;
-  low: string;
-  pulse: string;
+  high: number;
+  low: number;
+  pulse: number;
   meta?: string;
   constructor(message: string) {
     this.message = message;
-    [this.high, this.low, this.pulse, this.meta] = this.getParams();
+    const params = this.message.slice(10).split(' ');
+    this.high = +params[0];
+    this.low = +params[1];
+    this.pulse = +params[2];
+    [, , , this.meta] = params;
     this.validate();
   }
 
   private getParams() {
-    return this.message.slice(10).split(' ');
+    const params = this.message.slice(10).split(' ');
+    return [+params[0], +params[1], +params[2], params[3]];
   }
 
   private validate() {
@@ -29,15 +30,11 @@ class PressureMessage {
     return true;
   }
 
-  async appendAsRow() {
-    const { data } = await api.get(process.env.TENSION_SPREADSHEET_ID as string);
-    const { rowCount } = data.sheets[0].properties.gridProperties;
-    const range: string = `A${rowCount}%3AE${rowCount}`;
-    const date = getDate();
+  async create() {
     const info: Pressure = {
-      high: this.high, low: this.low, pulse: this.pulse, message: this.meta, date,
+      high: this.high, low: this.low, pulse: this.pulse, message: this.meta,
     };
-    const result = await api.appendRow(process.env.TENSION_SPREADSHEET_ID as string, range, info);
+    const result = await api.create(info);
     return result;
   }
 }

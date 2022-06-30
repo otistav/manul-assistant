@@ -1,7 +1,6 @@
 export type Pressure = {
-  date: string,
-  high: string,
-  low: string,
-  pulse: string,
+  high: number,
+  low: number,
+  pulse: number,
   message?: string,
 }
