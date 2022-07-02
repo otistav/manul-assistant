@@ -6,8 +6,7 @@ bot.hears(/давление:*/, async (ctx) => {
   try {
     const message = new PressureMessage(ctx.message.text);
     await message.create();
-    const all = await db.getAll();
-    ctx.reply(`Добавиль, проверяй ${JSON.stringify(all)}`);
+    ctx.reply('Добавиль, проверяй');
   } catch (error: any) {
     console.log(error);
     ctx.reply('Шо то пошло не так');
