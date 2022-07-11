@@ -1,6 +1,5 @@
 import bot from './entities/telegram';
-import PressureMessage from './models/PressureMessage';
-import db from './db/db';
+import PressureMessage from './models/PerssureAction';
 
 bot.hears(/давление:*/, async (ctx) => {
   try {

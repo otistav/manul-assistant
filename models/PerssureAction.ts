@@ -1,7 +1,7 @@
 import api from '../db/db';
 import { Pressure } from '../types';
 
-class PressureMessage {
+class PressureAction {
   message: string;
   high: number;
   low: number;
@@ -39,4 +39,4 @@ class PressureMessage {
   }
 }
 
-export default PressureMessage;
+export default PressureAction;
