@@ -1,9 +1,15 @@
 import bot from './entities/telegram';
-import PressureMessage from './models/PerssureAction';
+import PressureAction from './models/PerssureAction';
+import checkLastMatch from './apps/telegram/dotamatches/index';
+
+const FIVE_MINS = 1000 * 60 * 5;
+
+setInterval(checkLastMatch, FIVE_MINS);
+checkLastMatch();
 
 bot.hears(/давление:*/, async (ctx) => {
   try {
-    const message = new PressureMessage(ctx.message.text);
+    const message = new PressureAction(ctx.message.text);
     await message.create();
     ctx.reply('Добавиль, проверяй');
   } catch (error: any) {

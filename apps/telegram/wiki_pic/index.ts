@@ -1,5 +1,5 @@
 import bot from '../../../entities/telegram';
-import getPotdInfo from '../../../services/wiki_parser';
+import getPotdInfo from '../../../services/wiki-parser';
 
 export default async function run() {
   const potd = await getPotdInfo();
