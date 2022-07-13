@@ -2,28 +2,33 @@ import path from 'path';
 import bot from './entities/telegram';
 import PressureAction from './models/PerssureAction';
 import checkLastMatch from './apps/telegram/dotamatches/index';
-import { stretchHands } from './apps/telegram/reminders';
+import { createReminder } from './apps/telegram/reminders';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
-const FIVE_MINS = 1000 * 60 * 5;
-const THREE_HOURS = 1000 * 60 * 60 * 3;
+(async () => {
+  const FIVE_MINS = 1000 * 60 * 5;
+  const HOUR = 1000 * 60 * 60;
 
-setInterval(stretchHands, THREE_HOURS);
-stretchHands();
+  const stretchHands = await createReminder(process.env.TG_W as string, process.env.STRETCH_MESSAGES?.split('*') as string[]);
+  setInterval(stretchHands, HOUR * 3);
 
-setInterval(checkLastMatch, FIVE_MINS);
-checkLastMatch();
+  const secretReminder = await createReminder(process.env.TG_W as string, process.env.SECRET_MESSAGES?.split('*') as string[]);
+  setInterval(secretReminder, HOUR * 4.5);
 
-bot.hears(/давление:*/, async (ctx) => {
-  try {
-    const message = new PressureAction(ctx.message.text);
-    await message.create();
-    ctx.reply('Добавиль, проверяй');
-  } catch (error: any) {
-    console.log(error);
-    ctx.reply('Шо то пошло не так');
-  }
-});
+  setInterval(checkLastMatch, FIVE_MINS);
+  checkLastMatch();
 
-bot.launch();
+  bot.hears(/давление:*/, async (ctx) => {
+    try {
+      const message = new PressureAction(ctx.message.text);
+      await message.create();
+      ctx.reply('Добавиль, проверяй');
+    } catch (error: any) {
+      console.log(error);
+      ctx.reply('Шо то пошло не так');
+    }
+  });
+
+  bot.launch();
+})();
