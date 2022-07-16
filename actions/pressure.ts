@@ -1,5 +1,6 @@
 import api from '../db/db';
 import { Pressure } from '../types';
+import { ValidationError } from '../utils/errors';
 
 class PressureAction {
   message: string;
@@ -23,7 +24,7 @@ class PressureAction {
   }
 
   private validate() {
-    if (!this.message.startsWith('давление: ')) throw new Error('неверный формат');
+    if (!this.message.startsWith('давление: ')) throw new ValidationError();
     const params = this.message.slice(10).split(' ');
     if (params.length < 3) throw new Error('мало параметров');
     if (params.slice(0, 3).some((val) => Number.isNaN(+val))) throw new Error('неверные параметры');

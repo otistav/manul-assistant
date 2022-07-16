@@ -29,6 +29,8 @@
           "ts": "never",
           "tsx": "never"
       }],
+      "max-len": ["error", { "code": 150 }],
+      "implicit-arrow-linebreak": "off",
       "camelcase": "off",
       "lines-between-class-members": "off"
   }
