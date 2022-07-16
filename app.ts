@@ -1,6 +1,6 @@
 import path from 'path';
 import bot from './entities/telegram';
-import PressureAction from './models/PerssureAction';
+import PressureAction from './actions/pressure';
 import checkLastMatch from './apps/telegram/dotamatches/index';
 import { createReminder } from './apps/telegram/reminders';
 
