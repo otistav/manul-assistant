@@ -31,11 +31,14 @@ const getMatchInfo = (match: cheerio.Cheerio<cheerio.AnyNode>): MatchInfo => ({
   score: match.find('div.r-fluid:nth-child(5) > div.r-body > span.kda-record').text(),
 });
 
+export const getMatchInfoByIndex = (ind: number): Promise<MatchInfo> =>
+  getMatch(ind).then((match: cheerio.Cheerio<cheerio.AnyNode>) => getMatchInfo(match));
+
 const getWinTitle = (condition) => (condition === D_WIN_COND ? WIN : LOSE);
 
 const getMessage = (info: MatchInfo) => `Сочный ${getWinTitle(info.condition)} на ${info.hero} со счетом ${info.score}! Чекни быстрее!`;
 
-export default async function checkLastMatch(): Promise<void> {
+export async function checkLastMatch(): Promise<void> {
   const match = await getMatch(1);
   const id = getMatchId(match) as string;
   if (id !== lastMatchId) {
