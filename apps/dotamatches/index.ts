@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import bot from '../../../entities/telegram';
 import * as cheerio from 'cheerio';
-import bot from '../../../entities/telegram';
+import bot from '../../entities/telegram';
 
 type MatchInfo = {
   hero: string;

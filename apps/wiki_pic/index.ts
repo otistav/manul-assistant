@@ -1,7 +1,7 @@
-import bot from '../../../entities/telegram';
-import getPotdInfo from '../../../services/wiki-parser';
+import bot from '../../entities/telegram';
+import getPotdInfo from '../../services/wiki-parser';
 
-export default async function run() {
+export default async function sendPotd() {
   const potd = await getPotdInfo();
   const ids = process.env.TELEGRAM_CHAT_IDS as string;
   ids.split(',').forEach(async (id: string) => {

@@ -2,7 +2,7 @@
 import { program } from 'commander';
 import fs from 'fs';
 import os from 'os';
-import { getMatchInfoByIndex } from '../apps/telegram/dotamatches/index';
+import { getMatchInfoByIndex } from '../apps/dotamatches/index';
 
 const getEnvVars = (filecontent: string): any =>
   filecontent.split('\n').filter((m) => !!m).reduce((prev, curr) => ({ ...prev, [curr.split('=')[0]]: curr.split('=')[1] }), {});
