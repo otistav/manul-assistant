@@ -13,10 +13,8 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
   const stretchHands = await createReminder(process.env.TG_W as string, process.env.STRETCH_MESSAGES?.split('*') as string[]);
   setInterval(stretchHands, HOUR * 3);
-  stretchHands();
   const secretReminder = await createReminder(process.env.TG_W as string, process.env.SECRET_MESSAGES?.split('*') as string[]);
   setInterval(secretReminder, HOUR * 4.5);
-  secretReminder();
   setInterval(checkLastMatch, FIVE_MINS);
   checkLastMatch();
 
@@ -31,8 +29,12 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
     }
   });
 
-  bot.hears(/\/potd/, async () => {
-    sendPotd();
+  bot.hears(/\/potd/, async (ctx) => {
+    try {
+      sendPotd();
+    } catch (error) {
+      ctx.reply('error occured');
+    }
   });
 
   bot.launch();

@@ -34,7 +34,7 @@ const getMatchInfo = (match: cheerio.Cheerio<cheerio.AnyNode>): MatchInfo => ({
 export const getMatchInfoByIndex = (playerId: string, ind: number): Promise<MatchInfo> =>
   getMatch(playerId)(ind).then((match: cheerio.Cheerio<cheerio.AnyNode>) => getMatchInfo(match));
 
-const getWinTitle = (condition) => (condition === D_WIN_COND ? WIN : LOSE);
+const getWinTitle = (condition: string) => (condition === D_WIN_COND ? WIN : LOSE);
 
 const getMessage = (info: MatchInfo) => `Сочный ${getWinTitle(info.condition)} на ${info.hero} со счетом ${info.score}! Чекни быстрее!`;
 
