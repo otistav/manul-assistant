@@ -3,6 +3,7 @@ import bot from './entities/telegram';
 import PressureAction from './actions/pressure';
 import { checkLastMatch } from './apps/dotamatches/index';
 import { createReminder } from './apps/telegram/reminders';
+import getPotdInfo from './services/wiki-parser';
 import sendPotd from './apps/wiki_pic/index';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
@@ -31,7 +32,10 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
   bot.hears(/\/potd/, async (ctx) => {
     try {
-      sendPotd();
+      const potd = await getPotdInfo();
+      const { id } = ctx.message.from;
+      bot.telegram.sendMessage(id, potd.description, { parse_mode: 'Markdown' });
+      bot.telegram.sendPhoto(id, potd.link);
     } catch (error) {
       ctx.reply('error occured');
     }
