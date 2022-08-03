@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .ts ./",
     "build": "tsc",
-    "install": "tsc && npm i -g"
+    "install-glob": "tsc && npm i -g"
   },
   "bin": {
     "manul": "build/cli/index.js"
