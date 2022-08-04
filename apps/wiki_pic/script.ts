@@ -1,3 +1,0 @@
-import sendPotd from '.';
-
-sendPotd();
