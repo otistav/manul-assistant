@@ -1,4 +1,5 @@
 import path from 'path';
+import * as cron from 'node-cron';
 import bot from './entities/telegram';
 import PressureAction from './actions/pressure';
 import { checkLastMatch } from './apps/dotamatches/index';
@@ -6,6 +7,10 @@ import { createReminder } from './apps/telegram/reminders';
 import getPotdInfo from './apps/wiki-pic';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
+
+cron.schedule('* * * * *', () => {
+  console.log('cron works well');
+});
 
 (async () => {
   const FIVE_MINS = 1000 * 60 * 5;
