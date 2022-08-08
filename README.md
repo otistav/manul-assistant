@@ -9,14 +9,33 @@ manul *name of the command*
 ```
 2. Telegram integration for useful stuff (for example, reminders)
 
-# Structure of an actions
-Actions comes from user. At first, action will have a name (first word) and params (rest).
 
 # TODO
 
 1. ~~Create telegram script which sends wiki potd every morning~~
-2. Create proper project structure. Here is the most important part. Now is good for prototyping, but need to think through on architecture. Probably, some functional style will be good.
-3. Start test coverage.
-4. Write cron scripts in separate folder
-5. ~~Make cli work with typescript~~
-6. ~~Write script for tracking pressure in google sheets TODO: Maybe, get rid of google sheets and use local instead. Their api is horrible. Just store the table on serverside~~
+1. Start test coverage.
+1. ~~Make cli work with typescript~~
+1. ~~Write script for tracking pressure in google sheets TODO: Maybe, get rid of google sheets and use local instead. Their api is horrible. Just store the table on serverside~~
+1. Create db structure
+1. Migrate all jobs and tasks to db and automate everything that can be automated
+
+
+# Models definition
+
+
+## User
+- id: number
+- name: string
+- tg_id: number
+
+## Invite
+- user_id: number
+- code: string
+
+## Reminder
+- name: string
+- caption: string
+- description: string
+- cronjob: string
+- once: boolean
+- stopped: boolean
