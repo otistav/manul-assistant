@@ -13,14 +13,14 @@ cron.schedule('* * * * *', () => {
 });
 
 (async () => {
-  const FIVE_MINS = 1000 * 60 * 5;
-  // const HOUR = 1000 * 60 * 60;
+  // const FIVE_MINS = 1000 * 60 * 5;
+  const HOUR = 1000 * 60 * 60;
 
   // const stretchHands = await createReminder(process.env.TG_W as string, process.env.STRETCH_MESSAGES?.split('*') as string[]);
   // setInterval(stretchHands, HOUR * 3);
   // const secretReminder = await createReminder(process.env.TG_W as string, process.env.SECRET_MESSAGES?.split('*') as string[]);
   // setInterval(secretReminder, HOUR * 4.5);
-  setInterval(checkLastMatch, FIVE_MINS);
+  setInterval(checkLastMatch, HOUR/2);
   checkLastMatch();
 
   bot.hears(/давление:*/, async (ctx) => {
