@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "start": "ts-node-dev ./app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha 'test/**/*.ts' --recursive --require ts-node/register --timeout 60000 --exit",
     "lint": "eslint --ext .ts ./",
     "build": "tsc",
     "install-glob": "tsc && npm i -g"
@@ -17,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "28.1.6",
+    "@types/mocha": "9.1.1",
     "@types/node": "18.0.0",
     "@types/node-cron": "3.0.2",
     "@types/uuid": "8.3.4",

@@ -4,7 +4,7 @@ import bot from './entities/telegram';
 import PressureAction from './actions/pressure';
 import { checkLastMatch } from './apps/dotamatches/index';
 // import { createReminder } from './apps/telegram/reminders';
-import getPotdInfo from './apps/wiki-pic';
+import { getPotdInfo } from './apps/wiki-pic';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
