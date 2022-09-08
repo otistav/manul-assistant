@@ -5,6 +5,7 @@ import PressureAction from './actions/pressure';
 import { checkLastMatch } from './apps/dotamatches/index';
 // import { createReminder } from './apps/telegram/reminders';
 import { getPotdInfo } from './apps/wiki-pic';
+import getHolidays from './apps/holidays';
 
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -20,7 +21,7 @@ cron.schedule('* * * * *', () => {
   // setInterval(stretchHands, HOUR * 3);
   // const secretReminder = await createReminder(process.env.TG_W as string, process.env.SECRET_MESSAGES?.split('*') as string[]);
   // setInterval(secretReminder, HOUR * 4.5);
-  setInterval(checkLastMatch, HOUR/2);
+  setInterval(checkLastMatch, HOUR / 2);
   checkLastMatch();
 
   bot.hears(/давление:*/, async (ctx) => {
@@ -46,5 +47,14 @@ cron.schedule('* * * * *', () => {
     }
   });
 
+  bot.hears(/\/holidays/, async (ctx) => {
+    try {
+      const holidays = await getHolidays();
+      ctx.reply(holidays.toString());
+    } catch (error) {
+      console.log(error, 'error');
+      ctx.reply('error occured');
+    }
+  });
   bot.launch();
 })();
