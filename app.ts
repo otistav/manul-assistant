@@ -39,6 +39,7 @@ cron.schedule('* * * * *', () => {
     try {
       const potd = await getPotdInfo();
       const { id } = ctx.message.from;
+      console.log(potd.link, 'linkkk');
       bot.telegram.sendMessage(id, potd.description, { parse_mode: 'Markdown' });
       bot.telegram.sendPhoto(id, potd.link);
     } catch (error) {
