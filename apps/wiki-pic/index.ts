@@ -9,7 +9,7 @@ type PotdInfo = {
 export const getWikiPage = async (): Promise<string> =>
   axios.get(process.env.POTD_LINK as string).then((res) => res.data);
 
-const getImgLink = async (page): Promise<string> => {
+const getImgLink = async (page: string): Promise<string> => {
   const $ = cheerio.load(page);
   const href = $('#main-potd > .main-box-content > .center > .floatnone > a').attr('href') as string;
   const potdpage = await axios.get(`https://commons.wikimedia.org${href.replace('%D0%A4%D0%B0%D0%B9%D0%BB', 'File')}`).then((res) => res.data);
