@@ -22,7 +22,6 @@ manul *name of the command*
 
 # Models definition
 
-
 ## User
 - id: number
 - name: string
@@ -32,10 +31,7 @@ manul *name of the command*
 - user_id: number
 - code: string
 
-## Reminder
-- name: string
-- caption: string
-- description: string
-- cronjob: string
-- once: boolean
-- stopped: boolean
+
+Data can be received from everywhere - no mattar it's tg bot or just get request.
+
+First thing that appears to me is to separate it to services, and then use services as I do usually in rest server apps.
