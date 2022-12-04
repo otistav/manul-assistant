@@ -1,8 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../connection'
-import User from './User';
 
-interface NoteAttributes {
+export interface NoteAttributes {
   id: number;
   user_id: number;
   text: string;
@@ -10,11 +9,11 @@ interface NoteAttributes {
   updatedAt?: Date;
   deletedAt?: Date;
 }
-export interface IngredientInput extends Optional<NoteAttributes, 'id'> { }
-export interface IngredientOuput extends Required<NoteAttributes> { }
+export interface NoteInput extends Optional<NoteAttributes, 'id'> { }
+export interface NoteOutput extends Required<NoteAttributes> { }
 
 
-class Note extends Model<NoteAttributes, IngredientInput> implements NoteAttributes {
+class Note extends Model<NoteAttributes, NoteInput> implements NoteAttributes {
   public id!: number
   public user_id!: number
   public text!: string;
@@ -36,7 +35,7 @@ Note.init({
 
   },
   text: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
   },
 }, {

@@ -2,7 +2,6 @@ import { Telegraf } from 'telegraf';
 import path from 'path';
 import { onPotdRequest, onHolidaysRequest } from './router';
 
-require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 function createBot(token: string): Telegraf {
   const bot = new Telegraf(token);

@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../connection'
 import Note from './Note';
 
-interface UserAttributes {
+export interface UserAttributes {
   id: number;
   username: string;
   tgid: string;

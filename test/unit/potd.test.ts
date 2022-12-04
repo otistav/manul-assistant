@@ -1,8 +1,6 @@
 import { expect } from 'chai';
 import { getPotdInfo } from '../../services/wiki';
 
-require('dotenv').config();
-
 describe('potd functionality', () => {
   it('should return link and descripition of potd', async () => {
     // add an assertion

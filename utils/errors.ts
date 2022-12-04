@@ -1,10 +1,23 @@
 /* eslint-disable max-classes-per-file */
-export class BaseError extends Error {
+export default class BaseError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
 }
+
 
 export class ValidationError extends BaseError {
   constructor(message?: string) {
-    super(message);
-    this.message = message || 'validation error';
+    super(message || 'validation error', 400);
+  }
+}
+
+export class ExistingError extends BaseError {
+  constructor(message?: string) {
+    super(message || 'existing error', 404);
+
   }
 }

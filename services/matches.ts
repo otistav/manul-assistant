@@ -40,7 +40,6 @@ export const getMatchInfoByIndex = (playerId: string, ind: number): Promise<Matc
 
 const getWinTitle = (condition: string) => (condition === D_WIN_COND ? WIN : LOSE);
 
-const getMessage1 = (info: MatchInfo) => `Сочный ${getWinTitle(info.condition)} на ${info.hero} со счетом ${info.score}! Чекни быстрее!`;
 export const getMessage = (info: MatchInfo) => compile({ title: getWinTitle(info.condition), hero: info.hero, score: info.score });
 
 export const createMatchChecker = (playerId) => {
