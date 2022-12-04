@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
-import models from "../db/models"
-import { generatePassword } from "../utils/misc";
-import { PASS_LENGTH } from "../utils/constants";
-import { UserAttributes, UserOutput } from "../db/models/User";
+import { generatePassword } from '../utils/misc';
+import { BadRequestError } from '../utils/errors';
+import { PASS_LENGTH } from '../utils/constants';
+import { UserAttributes, UserOutput } from '../db/models/User';
 import * as userDal from '../db/dal/User';
-const tgids = process.env.TELEGRAM_CHAT_IDS?.split(',');
+const tgids = process.env.TELEGRAM_CHAT_IDS?.split(',').map(n => +n);
 
 // TODO: type the ids
 export const getById = async (id: number) => {
@@ -19,7 +19,7 @@ export const deleteUser = async (id) => {
 export const createUser = async (username, tgid) => {
   if (!tgids?.includes(tgid)) throw new Error('tgid is not acceptable');
   const user = await userDal.getOne({ username });
-  if (user) throw new Error();
+  if (user) throw new BadRequestError();
   const password = generatePassword(PASS_LENGTH);
   console.log(password, 'PASSWORD')
   const hashed: string = await bcrypt.hash(password, 10);

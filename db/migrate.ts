@@ -1,5 +1,5 @@
 // index.js
-import sequelize from "./connection";
+import sequelize from './connection';
 import { Umzug, SequelizeStorage } from 'umzug';
 
 const umzug = new Umzug({

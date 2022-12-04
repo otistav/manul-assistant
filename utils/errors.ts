@@ -21,3 +21,10 @@ export class ExistingError extends BaseError {
 
   }
 }
+
+export class BadRequestError extends BaseError {
+  constructor(message?: string) {
+    super(message || 'existing error', 400);
+
+  }
+}
