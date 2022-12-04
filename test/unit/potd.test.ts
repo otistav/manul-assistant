@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getPotdInfo } from '../../apps/wiki-pic';
+import { getPotdInfo } from '../../services/wiki';
 
 require('dotenv').config();
 

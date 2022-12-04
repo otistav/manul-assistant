@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { last } from 'cheerio/lib/api/traversing';
 import { template } from 'lodash';
+import { sendMessageAll } from '../apps/telegram/utils';
 
 type MatchInfo = {
   hero: string;
@@ -57,4 +58,13 @@ export const createMatchChecker = (playerId) => {
       }
     }
   }
+}
+
+const checkLastMatch = createMatchChecker(process.env.DOTA_PLAYER_ID);
+export const notifyMatchTg = async () => {
+  const data = await checkLastMatch();
+  if (!data) return;
+  const message = getMessage(data);
+  const ids = process.env.TELEGRAM_CHAT_IDS as string;
+  sendMessageAll(ids.split(','), message);
 }

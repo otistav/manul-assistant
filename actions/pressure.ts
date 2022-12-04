@@ -1,4 +1,4 @@
-import api from '../db/db';
+import api from '../db/connection';
 import { Pressure } from '../types';
 import { ValidationError } from '../utils/errors';
 
