@@ -15,7 +15,7 @@ describe('Notes test', () => {
   });
   const userData = {
     username: 'username',
-    tgid: '417992823',
+    tgid: 417992823,
   };
   const noteText = 'first note here';
   let id = 0;
@@ -23,7 +23,7 @@ describe('Notes test', () => {
   const tags = ['tag1', 'tag2', 'tag3'];
   it('should create one user and one note for this user', async () => {
     const user = await userService.createUser(userData.username, userData.tgid);
-    const note = await noteService.create(user.id, noteText, tags);
+    const note = await noteService.create(user.username, noteText, tags);
     userId = user.id;
     id = note.id;
     expect(user).to.have.property('username').and.to.equal(userData.username);

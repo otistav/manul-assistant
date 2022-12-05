@@ -1,7 +1,12 @@
 import { notDeepEqual } from 'assert';
 import * as noteDal from '../db/dal/Note';
 import * as userDal from '../db/dal/User';
+import { NoteOutput } from '../db/models/Note';
 import { BadRequestError, ExistingError } from '../utils/errors';
+
+export const formatNotes = (notes: NoteOutput[]): string => {
+  return notes.map(n => n.text).join('\n\n');
+}
 
 export const create = async (username: string, text: string, tags?: string[]) => {
   const user = await userDal.getOne({ username });

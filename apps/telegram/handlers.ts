@@ -57,7 +57,7 @@ export const onNoteReceive = async (ctx) => {
 export const onAllNotesRequest = async (ctx) => {
   try {
     const notes = await noteService.getAll(ctx.message.from.username);
-    ctx.reply(notes);
+    ctx.reply(noteService.formatNotes(notes));
   } catch (error) {
     console.log(error);
   }
